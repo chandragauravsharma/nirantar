@@ -1,0 +1,29 @@
+
+<?php
+    
+    $host="localhost"; // Host name 
+    $username="root"; // Mysql username 
+    $password="shanti.ram123"; // Mysql password 
+    $db_name="nirantar"; // Database name 
+    $tbl_name="customerdetails"; // Table name 
+
+    // Connect to server and select databse.
+    $connection = mysql_connect($host, $username, $password) or die("cannot connect to mysql" . mysql_error());
+    mysql_select_db($db_name) or die("cannot connect to database" . mysql_error()); 
+	
+	$id = $_POST['id'];
+	$count = sizeof($id);
+	
+	for($i=0; $i<$count; $i++)
+	{
+	$sql = "DELETE FROM $tbl_name WHERE custId = '$id[$i]'";
+	$result = mysql_query($sql) or die('Could not delete data: ' . mysql_error());
+	}
+	
+    //closing mysql connection
+    mysql_close($connection);
+	if($result)
+	{echo "yes";}
+	
+?>
+
