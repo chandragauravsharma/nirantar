@@ -383,6 +383,7 @@ function validateAdditionalDetails()
 				$('#wrongmobilebutton').hide();
 				$('#rightemailbutton').hide();
 				$('#wrongemailbutton').hide();
+				$('#custlastname').focus();
 			},
             error: function(xhr,status,error){
        			console.log("submission error");

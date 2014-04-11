@@ -1,62 +1,6 @@
 <?php include 'header.php' ?>
 
 
-<?php
-    //php code to extract table data from database
-    $host="localhost"; // Host name 
-    $username="root"; // Mysql username 
-    $password="shanti.ram123"; // Mysql password 
-    $db_name="nirantar"; // Database name 
-    $tbl_name="customerdetails"; // Table name 
-	
-	 // Connect to server and select databse.
-    $connection = mysql_connect($host, $username, $password) or die("cannot connect to mysql" . mysql_error());
-    mysql_select_db($db_name) or die("cannot connect to database" . mysql_error()); 
-	
-    $sql="SELECT * FROM $tbl_name";
-    $result=mysql_query($sql);
-	
-	//closing mysql connection
-    mysql_close($connection);
-
-    // Mysql_num_row is counting table row
-    $count=mysql_num_rows($result);
-    
-	//$customer_array = array();
-	while ($row = mysql_fetch_assoc($result)){  
-        $customer_array[] = array($row['custId'], $row['custLastName'], $row['custFirstName'], $row['custAddress'], $row['custCity'], $row['custPhone'], $row['custMobile'], $row['custEmail'], $row['custOtherDetails'], $row['custGender']);
-    }
-	
-	function hello()
-	{
-	   //php code to extract table data from database
-    $host="localhost"; // Host name 
-    $username="root"; // Mysql username 
-    $password="shanti.ram123"; // Mysql password 
-    $db_name="nirantar"; // Database name 
-    $tbl_name="customerdetails"; // Table name 
-	
-	 // Connect to server and select databse.
-    $connection = mysql_connect($host, $username, $password) or die("cannot connect to mysql" . mysql_error());
-    mysql_select_db($db_name) or die("cannot connect to database" . mysql_error()); 
-	
-    $sql="SELECT * FROM $tbl_name";
-    $result=mysql_query($sql);
-	
-	//closing mysql connection
-    mysql_close($connection);
-
-    // Mysql_num_row is counting table row
-    $count=mysql_num_rows($result);
-    
-	//$customer_array = array();
-	while ($row = mysql_fetch_assoc($result)){  
-        $customer_array[] = array($row['custId'], $row['custLastName'], $row['custFirstName'], $row['custAddress'], $row['custCity'], $row['custPhone'], $row['custMobile'], $row['custEmail'], $row['custOtherDetails'], $row['custGender']);
-    }
-	}
-	
-?>
-
 
 <nav class="navbar-default navbar-static-side" role="navigation" style="background-color:#F0F8FF">
             <div class="sidebar-collapse">
@@ -194,56 +138,17 @@
                             Please Refer Below Table Regarding Customer Info
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-						
-                 						<!-- Modal Unselected alert-->
-                                        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                        <div class="modal-content">
-                                        <div class="modal-header" style="background-color:#d9edf7">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title" id="myModalLabel">Alert!!!</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                                No customer selected for deletion.
-                                        </div>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-info" data-dismiss="modal">OK</button>
-                                        </div>
-                                        </div>
-                                        </div>
-                                        </div>
-						                <!-- /.Modal -->
-										
-										<!-- Modal confirm deletion-->
-                                        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                        <div class="modal-content">
-										<form role="form">
-                                        <div class="modal-header" style="background-color:#ed9c28">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title" id="myModalLabel">Confirm Deletion!!!</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                                Are you sure, you want to permanently delete selected customer(s)?
-                                        </div>
-                                        <div class="modal-footer">
-										<button type="button" class="btn btn-warning" data-dismiss="modal" name="confirm" id="confirmbutton" value="yes">Yes</button>
-                                        <button type="button" class="btn btn-warning" data-dismiss="modal">No</button>
-                                        </form>
-										</div>
-                                        </div>
-                                        </div>
-                                        </div>
-						                <!-- /.Modal -->
+                        <div class="panel-body" id="panel-bodyid">	   
 							    
 							    <div class="row">
                                     <div class="col-lg-12">
 								    <form role="form">
 									    <div id="deletionSuccess" style="text-align:center; display:none"><font color="green">Success: Selected customers permanently deleted.</font></div>
 									    <div id="deletionError" style="text-align:center; display:none"><font color="red">Error: Some problem occured!! Could not permanently delete the selected customer from database. Please try later.</font></div>
+										<div id="editingSuccess" style="text-align:center; display:none"><font color="green">Success: Edited fields updated in database.</font></div>
+									    <div id="editingError" style="text-align:center; display:none"><font color="red">Error: Some problem occured!! Could not permanently edit the selected details from this customer. Please try later.</font></div>
 										
-								        <div class="button-inline" action="listallcustomers.php" method="get">
+								        <div class="button-inline">
 										    <button type="button" class="btn btn-success" name="custeditbutton" style="float:right;  margin-left:20px" id="custeditbuttonid">Edit Selected</button> 
 							                <button type="button" class="btn btn-warning" name="custdeletebutton" style="float:right" id="custdeletebuttonid" value="delete">Delete Selected</button> 
 								        </div>
@@ -255,30 +160,18 @@
                                 <table class="table table-striped table-bordered table-hover" id="customerlist">
                                     <thead>
                                         <tr> 
-                                            <th style="text-align:center; background-color:#d9edf7">Customer ID</th>
-                                            <th style="background-color:#d9edf7">Name</th>
+										    <th style="background-color:#d9edf7"></th>   
+                                            <th style="background-color:#d9edf7">First Name</th>
+											<th style="background-color:#d9edf7">Last Name</th>
                                             <th style="background-color:#d9edf7">Gender</th>
                                             <th style="background-color:#d9edf7">City</th>
                                             <th style="background-color:#d9edf7">Mobile</th>
 											<th style="background-color:#d9edf7">Email</th>
-											<th style="text-align:center; background-color:#d9edf7"><input type="checkbox" style="width:16px; height:16px" onClick="toggle(this)"/></th>
+										    <th style="text-align:left; background-color:#d9edf7"><input type="checkbox" style="width:16px; height:16px" onClick="toggle(this)"/></th>   
                                         </tr>
                                     </thead>
                                     <tbody>
-									<?php
-									    for($i=0; $i < $count ;$i++)
-									    { ?>
-									    <tr> 
-										    <td style="text-align:center"><?php echo $customer_array[$i][0] ?></td>
-											<td><?php echo $customer_array[$i][2] . " " . $customer_array[$i][1] ?></td>
-											<td><?php echo $customer_array[$i][9] ?></td>
-											<td><?php echo $customer_array[$i][4] ?></td>
-											<td><?php echo $customer_array[$i][6] ?></td>
-											<td><?php echo $customer_array[$i][7] ?></td>
-											<td style="text-align:center"><input type="checkbox" style="width:14px; height:14px" id="custcheckboxid" name="custcheckbox" value="<?php echo $customer_array[$i][0] ?>"></td>
-										</tr>
-									<?php }
-									?>
+									   
                                     </tbody>
                                 </table>
                             </div>
@@ -314,74 +207,61 @@
 
 <!-- script for row expansion/collapse-->   
 <script type="text/javascript" language="javascript">
+var oTable;
+
 /* Formating function for row details */
-function fnFormatDetails ( oTable, nTr )
+function fnFormatDetails ( nTr )
 {
     var aData = oTable.fnGetData( nTr );
-	<?php
-      $js_array = json_encode($customer_array);
-	  $js_count = json_encode($count);
-      echo "var javascript_array = ". $js_array . ";\n";
-	  echo "var javascript_count = ". $js_count . ";\n";
-    ?>
-	var number=0;
-	for(var i=0;i<javascript_count;i++)
-	{
-	   if(aData[1] == javascript_array[i][0])
-	   {number = i; break;}
-	}
+	
 	var sOut = '<div class="innerDetails" style="display:none">';
     sOut += '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-    sOut += '<tr><td>Name:</td><td>' + javascript_array[number][2] + " " + javascript_array[number][1] + '</td></tr>';
-	sOut += '<tr><td>Gender:</td><td>' + javascript_array[number][9] + '</td></tr>';
-	sOut += '<tr><td>Address:</td><td>' + javascript_array[number][3] + '</td></tr>';
-	sOut += '<tr><td>City:</td><td>' + javascript_array[number][4] + '</td></tr>';
-	sOut += '<tr><td>Phone:</td><td>' + javascript_array[number][5] + '</td></tr>';
-	sOut += '<tr><td>Mobile:</td><td>' + javascript_array[number][6] + '</td></tr>';
-	sOut += '<tr><td>Email:</td><td>' + javascript_array[number][7] + '</td></tr>';
-	sOut += '<tr><td>Other:</td><td>' + javascript_array[number][8] + '</td></tr>';
+    sOut += '<tr><td>Name:</td><td>'+ aData[1] + " " + aData[2] +'</td></tr>';
+	sOut += '<tr><td>Gender:</td><td>'+ aData[3] +'</td></tr>';
+	sOut += '<tr><td>Address:</td><td>'+ aData[8] +'</td></tr>';
+	sOut += '<tr><td>City:</td><td>'+ aData[4] +'</td></tr>';
+	sOut += '<tr><td>Phone:</td><td>'+ aData[9] +'</td></tr>';
+	sOut += '<tr><td>Mobile:</td><td>'+ aData[5] +'</td></tr>';
+	sOut += '<tr><td>Email:</td><td>'+ aData[6] +'</td></tr>';
+	sOut += '<tr><td>Other:</td><td>'+ aData[10] +'</td></tr>';
     sOut += '</table>';
 	sOut += '</div>';
      
     return sOut;
 }
 
-
-function initializeTable()
-{
-      /*
-     * Insert a 'details' column to the table
-     */ 
-    var nCloneTh = document.createElement( 'th' );
-	nCloneTh.setAttribute("style","background-color:#d9edf7");
-    var nCloneTd = document.createElement( 'td' );
-    nCloneTd.innerHTML = '<img src="image/details_open.png">';
-    nCloneTd.className = "center";
-     
-    $('#customerlist thead tr').each( function () {
-        this.insertBefore( nCloneTh, this.childNodes[0] );
-    } );
-     
-    $('#customerlist tbody tr').each( function () {
-        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
-    } );
-     
-    /*
-     * Initialse DataTables, with no sorting on the 'details' column
-     */
-    var oTable = $('#customerlist').dataTable( {
+ 
+ //when the document loads
+$(document).ready(function() {
+	oTable = $('#customerlist').dataTable( {
+	    "bProcessing": true,
+        "bServerSide": true,
+		"async": false,
+        "sAjaxSource": "getcustomertabledata.php",
+		"aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
         "aoColumnDefs": [
             { "bSortable": false, "aTargets": [ 0,7 ] },
-			{ "bSearchable": false, "aTargets": [ 0,7 ] }
+			{ "bSearchable": false, "aTargets": [ 0,7 ] },
+			{ "mData": null,
+              "sDefaultContent": '<img class="expand" src="image/details_open.png" />',
+              "aTargets": [ 0 ]
+            },
+			{
+			  "mData": null,
+			  "sDefaultContent": '<input type="checkbox" name="custcheckbox" style="width:14px; height:14px" value="idOn" />',
+			  "aTargets": [ 7 ]
+			},
         ],
-        "aaSorting": [[1, 'asc']],
+		
+        "aaSorting": [[1, 'asc']]
     });
+	
      
     /* Add event listener for opening and closing details
      * Note that the indicator for showing which row is open is not controlled by DataTables,
      * rather it is done here
      */
-    $('#customerlist tbody td img').click( function () {
+    $('#customerlist').on('click',  '.expand', function () {
         var nTr = $(this).parents('tr')[0];
         if ( oTable.fnIsOpen(nTr) )
         {
@@ -390,22 +270,17 @@ function initializeTable()
 			$('div.innerDetails', $(nTr).next()[0]).slideUp( function () {
             oTable.fnClose( nTr );
             } );
-			
         }
         else
         {
             /* Open this row */
             this.src = "image/details_close.png";
-            var nDetailsRow = oTable.fnOpen( nTr, fnFormatDetails(oTable, nTr), 'details' );
+            var nDetailsRow = oTable.fnOpen( nTr, fnFormatDetails(nTr), 'details' );
 			$('div.innerDetails', nDetailsRow).slideDown();
         }
     } );
-}
- 
- //when the document loads
-$(document).ready(function() {
-    initializeTable();
 } );
+
 </script>
 
 
@@ -427,71 +302,318 @@ function toggle(checkAll) {
 
 
 
-<!--script after confirm deletion button -->
+<!--script to delete/edit customer table -->
 <script>
+
+$('#custeditbuttonid').on('click', function() {
+    var editVals = [];
+	var erowData;
+        $(':checkbox:checked').each(function() {
+	    if($(this).val() == "idOn")
+        {var erow = $(this).parents('tr')[0];
+		erowData = oTable.fnGetData( erow );
+		var eid = erowData[11];
+		editVals.push(eid);}
+    });
+	//console.log(editVals);
+	var ecnt = editVals.length;
+	//console.log(ecnt); 
+    
+    if(ecnt <=0)
+    {   
+        BootstrapDialog.show({
+            title: 'No Customer Selected!!!',
+            message: 'You have not selected any customer to edit details.',
+			buttons: [ {
+                label: 'OK',
+				cssClass: 'btn-primary',
+                action: function(dialogItself){
+                dialogItself.close();
+                }
+            }]
+        });		 
+    }
+    else if(ecnt > 1)
+    {
+		BootstrapDialog.show({
+            title: 'More than One Customer Selected!!!',
+            message: 'You can edit only one customer at a time.',
+			buttons: [ {
+                label: 'OK',
+				cssClass: 'btn-primary',
+                action: function(dialogItself){
+                dialogItself.close();
+                }
+            }]
+        });
+	}
+    else if(ecnt == 1)
+    {    
+		var msg = $('<div>');
+		msg.append('<form role="form" id="modaleditform">');
+		msg.append('<div class="form-group form-inline">');
+		msg.append('<label>Name<label style="color:red"><font size="4">*</font></label></label> &nbsp;&nbsp;');
+		msg.append('<input class="form-control" name="lastname1" id="custlastname1" onchange="validateLastName()" type="text" value="'+erowData[2]+'"> &nbsp;');
+		msg.append('<input class="form-control" name="firstname1" id="custfirstname1" onchange="validateFirstName()" type="text" value="'+erowData[1]+'">');
+		msg.append('<p class="help-block">(Only first name is mandatory)</p>');
+		msg.append('</div>');
+		if(erowData[3] == "MALE")
+		{
+		msg.append('<div class="form-group">');
+        msg.append('<label>Gender<label style="color:red"><font size="4">*</font></label></label> &nbsp;');
+        msg.append('<label class="radio-inline">');
+        msg.append('<input type="radio" name="gender1" id="optionsRadiosInlineMale1" value="MALE" checked>Male');
+        msg.append('</label>');
+        msg.append('<label class="radio-inline">');
+        msg.append('<input type="radio" name="gender1" id="optionsRadiosInlineFemale1" value="FEMALE">Female');
+        msg.append('</label>');
+        msg.append('</div>');
+		}
+		else
+		{
+		msg.append('<div class="form-group">');
+        msg.append('<label>Gender<label style="color:red"><font size="4">*</font></label></label> &nbsp;');
+        msg.append('<label class="radio-inline">');
+        msg.append('<input type="radio" name="gender1" id="optionsRadiosInlineMale1" value="MALE">Male');
+        msg.append('</label>');
+        msg.append('<label class="radio-inline">');
+        msg.append('<input type="radio" name="gender1" id="optionsRadiosInlineFemale1" value="FEMALE" checked>Female');
+        msg.append('</label>');
+        msg.append('</div>');
+		}
+		msg.append('<div class="form-group">');
+        msg.append('<label>Address</label>');
+        msg.append('<textarea class="form-control" name="address1" id="custaddress1" onchange="validateAddress" rows="3">'+erowData[8]+'</textarea>');
+        msg.append('</div>');
+		msg.append('<div class="form-group form-inline">');
+        msg.append('<label>City<label style="color:red"><font size="4">*</font></label></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+        msg.append('<input class="form-control" name="city1" id="custcity1" onchange="validateCity" type="text" value="'+erowData[4]+'">');
+        msg.append('</div>');
+		msg.append('<div class="form-group form-inline">');
+        msg.append('<label>Phone</label> &nbsp;&nbsp;');
+        msg.append('<input class="form-control" name="phone1" id="custphone1" onchange="validatePhone" type="text" value="'+erowData[9]+'">');
+        msg.append('</div>');
+		msg.append('<div class="form-group form-inline">');
+        msg.append('<label>Mobile</label> &nbsp;');
+        msg.append('<input class="form-control" name="mobile1" id="custmobile1" onchange="validateMobile" type="text" maxlength="10" value="'+erowData[5]+'">');
+        msg.append('</div>');
+		msg.append('<div class="form-group form-inline">');
+        msg.append('<label>Email</label> &nbsp;&nbsp;&nbsp;&nbsp;');
+        msg.append('<input class="form-control" name="email1" id="custemail1" onchange="validateEmail" type="text" value="'+erowData[6]+'">');
+        msg.append('</div>');
+		msg.append('<div class="form-group">');
+        msg.append('<label>Additional Details</label>');
+        msg.append('<textarea class="form-control" name="additionaldetails1" id="custadditionaldetails1" onchange="validateAdditionalDetails" rows="3">'+erowData[10]+'</textarea>');
+        msg.append('</div>');
+		msg.append('</form>');
+		msg.append('</div>');
+		
+		BootstrapDialog.show({
+            title: 'Edit Customer Details',
+			type: BootstrapDialog.TYPE_SUCCESS,
+            closable: false,
+			message: msg,
+			buttons: [{
+                label: 'Submit',
+                cssClass: 'btn-success',
+                action: function(dialogItself) {
+					//submit button action code here
+					var firstnameM = $("#custfirstname1").val();
+		            var genderM = $("input[name='gender1']:checked").val();
+		            var cityM = $("#custcity1").val();
+					if((firstnameM.length > 0) && (genderM.length > 0) && (cityM.length > 0))
+		            {
+	                	var Vals = [];
+		                Vals.push($("#custlastname1").val());
+		                Vals.push(firstnameM);
+		                Vals.push(genderM);
+		                Vals.push($("#custaddress1").val());
+		                Vals.push(cityM);
+		                Vals.push($("#custphone1").val());
+		                Vals.push($("#custmobile1").val());
+		                Vals.push($("#custemail1").val());
+		                Vals.push($("#custadditionaldetails1").val());
+		                Vals.push(editVals[0]);
+		                console.log(editVals);
+		                $.ajax({
+                            type: "post", 
+                            url: "editcustomer.php",
+		                    //dataType:"json",
+                            data: {'val': Vals}, 
+		                    async: false,
+		                    cache: false,
+                            success: function(response){
+			                    console.log("success in editing" + response);
+			                    $("#editingError").hide();
+			                    $("#editingSuccess").show();
+			                    oTable.fnDraw();
+								dialogItself.close();
+                            },
+		                    error: function(xhr,status,error){
+		                        console.log("error in deletion" + status);
+			                    $("#editingSuccess").hide();
+			                    $("#editingError").show();
+								dialogItself.close();
+		                    }
+                        });
+		            }
+		            else
+	            	{
+		                BootstrapDialog.show({
+                            title: 'Mandatory Field Left Empty!!!',
+                            message: 'Please fill all * marked mandatory fields.',
+			                buttons: [ {
+                                label: 'OK',
+			                	cssClass: 'btn-primary',
+                                action: function(dialogItself){
+                                dialogItself.close();
+                                }
+                            }]
+                        });
+		            }
+					//ended here
+                }
+            },
+			{
+                label: 'Close',
+				cssClass: 'btn-primary',
+                action: function(dialogItself){
+                dialogItself.close();
+                }
+            }]
+        }); 
+	}  	
+} );
+
+
+
 $("#custdeletebuttonid").on('click', function(){ 
 	var allVals = [];
     $(':checkbox:checked').each(function() {
-	    if($(this).val() != "on")
-        {allVals.push($(this).val());}
+	    if($(this).val() == "idOn")
+        {var row = $(this).parents('tr')[0];
+		var rowData = oTable.fnGetData( row );
+		var id = rowData[11];
+		allVals.push(id);}
     });
+	//console.log(allVals);
+	var cnt = allVals.length;
+	//console.log(cnt);
 	
-	var cnt = 0;
-	var allRows = [];
-	$('#customerlist tbody tr').each( function () {
-        $(this).find('td').each(function(){
-		    $(this).find(':checkbox:checked').each(function(){
-			    //console.log(cnt);
-				allRows.push(cnt);
-			});
-		});
-		cnt++;
-    } );
-	console.log(allRows + allRows.length);
-	
-	if(allVals.length > 0)
+	if(cnt > 0)
 	{
-		$("#myModal2").modal({ backdrop: "static", keyboard: false}); $("#myModal2").modal("show");
-		$("#confirmbutton").on('click', function(){
-		
-		$.ajax({
-        type: "post", 
-        url: "deletecustomer.php",
-		//dataType:"json",
-        data: {'id':allVals}, 
-		async: false,
-        success: function(response){
-		     
-			//$('#customerlist').dataTable().fnClearTable();
-			//$('#customerlist').dataTable().fnDraw();
-			//$('#customerlist').html('');
-			//initializeTable();
-			//location.href = "listallcustomers.php";
-			console.log("success in deletion" + response);
-			for(var i = 0; i < allRows.length; i++)
-			{$('#customerlist').dataTable().fnDeleteRow(allRows[i]);}
-			$("#deletionError").hide();
-			$("#deletionSuccess").show();
-        },
-		error: function(xhr,status,error){
-		    console.log("error in deletion" + status);
-			$("#deletionSuccess").hide();
-			$("#deletionError").show();
-		}
+		BootstrapDialog.show({
+            title: 'Confirm Deletion!!!',
+			type: BootstrapDialog.TYPE_WARNING,
+            closable: false,
+            message: 'Are you sure, you want to permanently delete selected customer(s)?',
+			buttons: [ {
+                label: 'Yes',
+				cssClass: 'btn-warning',
+                action: function(dialogItself){
+                    $.ajax({
+                        type: "post", 
+                        url: "deletecustomer.php",
+		                //dataType:"json",
+                        data: {'id':allVals}, 
+		                async: false,
+						cache: false,
+                        success: function(response){
+			                console.log("success in deletion" + response);
+			                $("#deletionError").hide();
+			                $("#deletionSuccess").show();
+			                oTable.fnDraw();
+							dialogItself.close();
+                        },
+		                error: function(xhr,status,error){
+		                    console.log("error in deletion" + status);
+			                $("#deletionSuccess").hide();
+			                $("#deletionError").show();
+							dialogItself.close();
+		                }
+                    });
+                }
+            },
+			{
+			    label: 'No',
+				cssClass: 'btn-primary',
+                action: function(dialogItself){
+                dialogItself.close();
+                }
+			}]
         });
-		});
 	}
 	else
 	{
-	    $("#myModal1").modal({ backdrop: "static"}); $("#myModal1").modal("show");
+	    BootstrapDialog.show({
+            title: 'No Customer Selected!!!',
+            message: 'You have not selected any customer for deletion.',
+			buttons: [ {
+                label: 'OK',
+				cssClass: 'btn-primary',
+                action: function(dialogItself){
+                dialogItself.close();
+                }
+            }]
+        });
 	}
 });
 </script>
 
 
-   
-		
-		
+
+<!-- script to validate modal forms-->
+<script>
+function validateLastName()
+{
+    var x=document.getElementById("custlastname1");
+    x.value=x.value.toUpperCase(); 
+}
+
+function validateFirstName()
+{
+    var x=document.getElementById("custfirstname1");
+    x.value=x.value.toUpperCase(); 
+}
+
+function validateAddress()
+{
+    var x=document.getElementById("custaddress1");
+    x.value=x.value.toUpperCase();
+}
+
+function validateCity()
+{
+    var x=document.getElementById("custcity1");
+    x.value=x.value.toUpperCase();
+}
+
+function validatePhone()
+{
+    var x=document.getElementById("custphone1");
+    
+}
+
+function validateMobile()
+{
+    var x=document.getElementById("custmobile1");
+    
+}
+
+function validateEmail()
+{
+    var x=document.getElementById("custemail1");
+    x.value=x.value.toLowerCase();
+	
+}
+
+function validateAdditionalDetails()
+{
+    var x=document.getElementById("custadditionaldetails1");
+    x.value=x.value.toUpperCase();
+}
+</script>
+
 
 
 

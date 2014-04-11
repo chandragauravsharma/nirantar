@@ -18,15 +18,21 @@
     <!-- Page-Level Plugin CSS - Tables -->
     <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
 
+    <!-- Page-Level Plugin CSS - Dialog -->
+    <link href="bootstrap3-dialog-master/css/bootstrap-dialog.css" rel="stylesheet">
+
     <!-- include jquery file -->
     <script src="./js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
 
 
- <!-- Page-Level Plugin Scripts - Tables -->
+    <!-- Page-Level Plugin Scripts - Tables -->
     <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
     <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+    <!-- Page-Level Plugin Scripts - Dialog -->
+    <script src="bootstrap3-dialog-master/js/bootstrap-dialog.js"></script>
 
     <!-- SB Admin Scripts - Include with every page -->
     <script src="js/sb-admin.js"></script>
