@@ -46,8 +46,9 @@
          <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom:0px; background-color:#5cb85c; height:70px">
             <div class="navbar-header">
                 
-                <a class="navbar-brand" href="index.php" style="text-align:left; font-family:arial;color:#FFFFFF; margin-left:10px; padding-top:0px; padding-bottom:10px"><h2>Nirantar Inventory</h2></a>
-            </div>
+              <!--  <a class="navbar-brand" href="index.php" style="text-align:left; font-family:arial;color:#FFFFFF; margin-left:10px; padding-top:0px; padding-bottom:10px"><h2>Nirantar Inventory</h2></a>    -->
+                    <a class="navbar-brand" href="index.php" style="text-align:left; margin-left:0px; padding-top:10px;"><img src="image/logo.png"></a>    
+			</div>
         </nav>
 
             <!-- /.navbar-header -->
