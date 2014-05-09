@@ -4,8 +4,6 @@
 
 
 
-                
-
 <nav class="navbar-default navbar-static-side" role="navigation" style="background-color:#F0F8FF">
             <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
@@ -153,7 +151,7 @@
  <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h4 class="page-header">Add New Customer</h4>
+                    <h4 class="page-header">Add New Work</h4>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -162,7 +160,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            Please Enter Customer Details (* marked mandatory fields)
+                            Please Enter Work Details (* marked mandatory fields)
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -172,51 +170,26 @@
 									<div id="dataEntryFailure" style="text-align:left; display:none"><font color="green">Error: Could not enter data into database. Please try again later.</font></div>
 									<br>
 									
-                                    <form role="form" id="addcustform">
+                                    <form role="form" id="addworkform">
                                         <div class="form-group form-inline">
                                             <label>Name<label style="color:red"><font size="4">*</font></label></label> &nbsp;&nbsp;
-                                            <input class="form-control" placeholder="Last Name" name="lastname" id="custlastname" type="text" onchange="validateLastName()" autofocus>
-											
-											<input class="form-control" placeholder="First Name" name="firstname" id="custfirstname" type="text" onchange="validateFirstName()">
-											<button type="button" class="btn btn-success btn-circle" style="visibility:hidden" id="rightnamebutton" disabled><i class="fa fa-check"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-circle" style="visibility:hidden" id="wrongnamebutton" disabled><i class="fa fa-times"></i>
-                                            </button>
-											<p class="help-block">(Only 'first name' is mandatory)</p>
+                                            <input class="form-control" placeholder="Work Name" name="workname" id="worknameid" type="text" autofocus>
                                         </div>
 										<div class="form-group">
-                                            <label>Gender<label style="color:red"><font size="4">*</font></label></label> &nbsp;
-                                            <label class="radio-inline">
-                                                <input type="radio" name="gender" id="optionsRadiosInlineMale" value="MALE" checked>Male
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="gender" id="optionsRadiosInlineFemale" value="FEMALE">Female
-                                            </label>
-                                        </div>
-										<div class="form-group">
-                                            <label>Address</label>
-											
-                                            <textarea class="form-control" placeholder="Customer Address (max 500 characters)" name="address" id="custaddress" rows="3" onchange="validateAddress()"></textarea>
+                                            <label>Description</label>
+                                            <textarea class="form-control" placeholder="Work Description (max 500 characters)" name="description" id="descriptionid" rows="3"></textarea>
                                         </div>
 										<div class="form-group form-inline">
-                                            <label>City<label style="color:red"><font size="4">*</font></label></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <input class="form-control" name="city" id="custcity" type="text" onchange="validateCity()">
+                                            <label>Customer<label style="color:red"><font size="4">*</font></label></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <input class="form-control" name="customer" id="customerid" type="text">
                                         </div>
 										<div class="form-group form-inline">
-                                            <label>Phone</label> &nbsp;&nbsp;
-                                            <input class="form-control" placeholder="only digits"name="phone" id="custphone" type="text" onchange="validatePhone()">
-											<button type="button" class="btn btn-success btn-circle" style="visibility:hidden" id="rightphonebutton" disabled><i class="fa fa-check"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-circle" style="visibility:hidden" id="wrongphonebutton" disabled><i class="fa fa-times"></i>
-                                            </button>
+                                            <label>Category</label> &nbsp;&nbsp;
+                                            <input class="form-control" placeholder="Work Category" name="category" id="categoryid" type="text">
                                         </div>
 										<div class="form-group form-inline">
-                                            <label>Mobile</label> &nbsp;
-                                            <input class="form-control" placeholder="10 digits only" name="mobile" id="custmobile" type="text" maxlength="10" onchange="validateMobile()">
-											<button type="button" class="btn btn-success btn-circle" style="visibility:hidden" id="rightmobilebutton" disabled><i class="fa fa-check"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-circle" style="visibility:hidden" id="wrongmobilebutton" disabled><i class="fa fa-times"></i>
-                                            </button>
+                                            <label>Date</label> &nbsp;
+                                            <input class="form-control" placeholder="Select Date" name="date" id="dateid" type="text">
                                         </div>
 										<div class="form-group form-inline">
                                             <label>Email</label> &nbsp;&nbsp;&nbsp;&nbsp;

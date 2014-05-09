@@ -26,9 +26,6 @@
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="addnewcustomer.php">Add New</a>
-                            </li>
-                            <li>
-                                <a href="deleteexistingcustomer.php">Delete Existing</a>
                             </li>							
 							<li>
                                 <a href="listallcustomers.php">List All Customers</a>
@@ -37,6 +34,27 @@
                         <!-- /.nav-second-level -->
                     </li>
 					<!--customer details ended here-->
+
+                    <!--work details here-->
+                    <li>
+                        <a href="#"><i class="fa fa-pencil fa-fw"></i>Work<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="addnewwork.php">Add New</a>
+                            </li>                           
+                            <li>
+                                <a href="listallworkdone.php">List All Work Done</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <!--work details ended here-->
+
+                    <!--work category details here-->
+                    <li>
+                        <a href="workcategory.php"><i class="fa fa-list fa-fw"></i>Work Category</a>
+                    </li>
+                    <!--work details ended here-->
 					
 					
                     <li>
@@ -505,7 +523,7 @@ $("#custdeletebuttonid").on('click', function(){
 		BootstrapDialog.show({
             title: 'Confirm Deletion!!!',
 			type: BootstrapDialog.TYPE_WARNING,
-            closable: false,
+            closable: true,
             message: 'Are you sure, you want to permanently delete selected customer(s)?',
 			buttons: [ {
                 label: 'Yes',

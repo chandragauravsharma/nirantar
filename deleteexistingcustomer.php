@@ -35,6 +35,12 @@
                         <!-- /.nav-second-level -->
                     </li>
 					<!--customer details ended here-->
+
+                    <!--work category details here-->
+                    <li>
+                        <a href="workcategory.php"><i class="fa fa-list fa-fw"></i>Work Category</a>
+                    </li>
+                    <!--work details ended here-->
 					
 					
                     <li>
